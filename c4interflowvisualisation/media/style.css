@@ -1,0 +1,137 @@
+/* 通用样式 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e1e; /* 深色背景 */
+    color: #ffffff; /* 白色文字 */
+}
+
+h1 {
+    font-size: 24px;
+    color: #ffffff;
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* 按钮样式 */
+button {
+    background-color: #007acc; /* 蓝色按钮 */
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #005f9e; /* 鼠标悬停时颜色 */
+}
+
+button:active {
+    background-color: #004b80; /* 按下时颜色 */
+}
+
+/* 导航容器样式 */
+#navigation {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+/* 树状结构的列表样式 */
+#navigation ul {
+    list-style-type: none; /* 去掉项目符号 */
+    padding-left: 20px; /* 为子项缩进 */
+    margin: 0; /* 去掉默认的外边距 */
+}
+
+/* 列表项样式 */
+#navigation li {
+    list-style: none;
+    margin: 5px 0;
+    padding: 8px 12px;
+    background-color: #2d2d2d; /* 深灰色背景 */
+    border: 1px solid #444444; /* 边框颜色 */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* 鼠标悬停时的效果 */
+#navigation li:hover {
+    background-color: #3e3e3e; /* 鼠标悬停时背景颜色 */
+}
+
+/* 文件夹项样式 */
+#navigation li.folder {
+    font-weight: bold;
+    color: #ffa500; /* 橙色文件夹 */
+    position: relative;
+    padding-left: 25px;  /*为图标留出空间 */
+}
+
+/* 文件项样式 */
+#navigation li.file {
+    font-style: italic;
+    color: #ffffff; /* 白色文字 */
+    position: relative;
+    padding-left: 25px; /* 为图标留出空间 */
+}
+
+/* 文件夹图标 */
+#navigation li.folder::before {
+    content: '📂'; /* 文件夹图标 */
+    position: absolute;
+    left: 0px;
+    top: 3px;
+    font-size: 16px;
+    /*padding-left: 25px; /* 留出空间给图标 */
+}
+
+/* 文件图标 */
+#navigation li.file::before {
+    content: '📄'; /* 文件图标 */
+    position: absolute;
+    left: 0px;
+    bottom: 8px;
+    font-size: 16px;
+    /*padding-left: 25px; /* 留出空间给图标 */
+}
+
+/* 图片容器样式 */
+#image-container {
+    display: none; /* 初始隐藏 */
+    text-align: center; /* 图片居中 */
+    padding: 20px;
+}
+
+#image-container img {
+    max-width: 100%;
+    max-height: 80vh; /* 限制高度，避免超出视窗 */
+    border: 1px solid #444444; /* 边框颜色 */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 添加阴影效果 */
+}
+
+#image-container button {
+    display: block; /* 按钮独占一行 */
+    margin: 20px auto; /* 居中 */
+}
+
+/* 响应式设计 */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px; /* 调整字体大小 */
+    }
+
+    button {
+        font-size: 12px; /* 按钮字体大小 */
+        padding: 8px 10px;
+    }
+
+    #navigation li {
+        font-size: 14px; /* 导航字体大小 */
+    }
+}
