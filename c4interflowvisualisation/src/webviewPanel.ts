@@ -15,7 +15,6 @@ export function createWebviewPanel(context: vscode.ExtensionContext) {
             localResourceRoots: [
                 vscode.Uri.file(path.join(context.extensionPath, 'media')), // 媒体文件夹
                 vscode.Uri.file(vscode.env.appRoot), // VSCode 应用程序的根目录
-                vscode.Uri.file('E:/Arch_as_Code/C4InterFlow/Samples/Internet Banking System/Yaml/Diagrams') // 图片文件的根目录
             ]
         }
     );
