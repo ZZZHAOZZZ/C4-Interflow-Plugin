@@ -1,0 +1,40 @@
+ContentManagementSystem:
+  SoftwareSystems:
+    Database:
+      Label: Database
+      Boundary: Internal
+      Description: Stores user registration information, data, access logs, etc.
+      Technology: Database Schema
+      Interfaces:
+        AuthenticateUser:
+          Label: Authenticate User
+          Protocol: TCP/IP, SQL
+        SelectUserData:
+          Label: Select User Data
+          Protocol: TCP/IP, SQL
+        DataStorage:
+          Label: Data Storage
+          Protocol: SQL
+        ApproveMovieReview:
+          Label: Approve Movie Review
+          Protocol: HTTPS/WebSockets, SQL
+          IsPrivate: false
+          Flows:
+            - Type: Use
+              Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies.Interfaces.ShowMovieReview
+        ApproveActorProfile:
+          Label: Approve Actor Profile
+          Protocol: HTTPS/WebSockets, SQL
+          IsPrivate: false
+          Flows:
+            - Type: Use
+              Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies.Interfaces.ShowActorProfile
+        ApproveRestaurantReview:
+          Label: Approve Restaurant Review
+          Protocol: HTTPS/WebSockets, SQL
+          IsPrivate: false
+          Flows:
+            - Type: Use
+              Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining.Interfaces.ShowRestaurantReview
+      Attributes:
+        

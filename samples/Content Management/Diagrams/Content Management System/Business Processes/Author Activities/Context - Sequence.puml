@@ -1,0 +1,39 @@
+@startuml
+
+title Content Management System - Author Activities - Sequence - Context level
+
+participant "Author" as ContentManagementSystem.Actors.Author
+participant "CM" as ContentManagementSystem.SoftwareSystems.CM
+participant "Database" as ContentManagementSystem.SoftwareSystems.Database
+participant "Admin" as ContentManagementSystem.SoftwareSystems.Admin
+
+ContentManagementSystem.Actors.Author -> ContentManagementSystem.SoftwareSystems.CM : Author Log In\n[HTTPS]
+group Author Log In
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Database : Select User Data\n[TCP/IP, SQL]
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Database : Authenticate User\n[TCP/IP, SQL]
+end
+ContentManagementSystem.Actors.Author -> ContentManagementSystem.SoftwareSystems.CM : Add Movie Review\n[HTML]
+group Add Movie Review
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Admin : Add Movie Review
+group Add Movie Review
+ContentManagementSystem.SoftwareSystems.Admin -> ContentManagementSystem.SoftwareSystems.Database : Data Storage\n[SQL]
+end
+end
+ContentManagementSystem.Actors.Author -> ContentManagementSystem.SoftwareSystems.CM : Add Actor Profile\n[HTML]
+group Add Actor Profile
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Admin : Add Actor Profile
+group Add Actor Profile
+ContentManagementSystem.SoftwareSystems.Admin -> ContentManagementSystem.SoftwareSystems.Database : Data Storage\n[SQL]
+end
+end
+ContentManagementSystem.Actors.Author -> ContentManagementSystem.SoftwareSystems.CM : Add Restaurant Review\n[HTML]
+group Add Restaurant Review
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Admin : Add Restaurant Review
+group Add Restaurant Review
+ContentManagementSystem.SoftwareSystems.Admin -> ContentManagementSystem.SoftwareSystems.Database : Data Storage\n[SQL]
+end
+end
+ContentManagementSystem.Actors.Author -> ContentManagementSystem.SoftwareSystems.CM : Author Log Out\n[HTTPS]
+
+
+@enduml

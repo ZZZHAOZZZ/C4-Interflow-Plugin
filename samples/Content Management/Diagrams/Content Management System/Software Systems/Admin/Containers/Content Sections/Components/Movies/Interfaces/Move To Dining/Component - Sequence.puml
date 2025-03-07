@@ -1,0 +1,23 @@
+@startuml
+
+title Content Management System - Admin - Content Sections - Movies - Move To Dining - Sequence - Component level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+
+box "Admin" #White
+    
+box "Content Sections" #White
+    participant "Movies" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies
+    participant "Dining" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining
+end box
+
+end box
+
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies : Move To Dining\n[Hyperlink]
+group Move To Dining
+ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining : Enter Dining\n[HTTPS]
+end
+
+
+@enduml

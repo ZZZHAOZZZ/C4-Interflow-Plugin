@@ -1,0 +1,11 @@
+@startuml
+
+title Content Management System - Database - Select User Data - Sequence - Context level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+participant "Database" as ContentManagementSystem.SoftwareSystems.Database
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.Database : Select User Data\n[TCP/IP, SQL]
+
+
+@enduml

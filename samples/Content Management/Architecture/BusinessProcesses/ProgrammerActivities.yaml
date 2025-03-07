@@ -1,0 +1,19 @@
+ContentManagementSystem:
+  BusinessProcesses:
+    ProgrammerActivities:
+      Label: Programmer Activities
+      Activities:
+      - Label: Programmer Activities
+        Actor: ContentManagementSystem.Actors.Programmer
+        Flow:
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.CM.Interfaces.ProgrammerLogIn
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.CM.Interfaces.MakeMovieReviewTemplate
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.CM.Interfaces.MakeActorProfileTemplate
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.CM.Interfaces.MakeRestaurantReviewTemplate
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.CM.Interfaces.ProgrammerLogOut

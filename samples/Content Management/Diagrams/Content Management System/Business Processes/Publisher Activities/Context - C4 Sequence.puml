@@ -1,0 +1,19 @@
+@startuml
+!include ..\..\..\.c4s\C4_Sequence.puml
+
+title Content Management System - Publisher Activities - C4 Sequence - Context level
+
+Person(ContentManagementSystem.Actors.Publisher, "Publisher", "The publisher decides what major content sections are available.")
+System(ContentManagementSystem.SoftwareSystems.Admin, "Admin", "Admin is the highest-privilege user in a CMS, responsible for managing users, content, system configurations, and security.")
+System(ContentManagementSystem.SoftwareSystems.Database, "Database", "Stores user registration information, data, access logs, etc.")
+
+Rel(ContentManagementSystem.Actors.Publisher, ContentManagementSystem.SoftwareSystems.Admin, "Publisher Log In")
+Rel(ContentManagementSystem.SoftwareSystems.Admin, ContentManagementSystem.SoftwareSystems.Database, "Select User Data", "TCP/IP, SQL")
+Rel(ContentManagementSystem.SoftwareSystems.Admin, ContentManagementSystem.SoftwareSystems.Database, "Authenticate User", "TCP/IP, SQL")
+Rel(ContentManagementSystem.Actors.Publisher, ContentManagementSystem.SoftwareSystems.Admin, "Build Movies")
+Rel(ContentManagementSystem.Actors.Publisher, ContentManagementSystem.SoftwareSystems.Admin, "Build Dining")
+Rel(ContentManagementSystem.Actors.Publisher, ContentManagementSystem.SoftwareSystems.Admin, "Build News")
+Rel(ContentManagementSystem.Actors.Publisher, ContentManagementSystem.SoftwareSystems.Admin, "Publisher Log Out")
+
+
+@enduml

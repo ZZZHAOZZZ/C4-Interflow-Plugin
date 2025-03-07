@@ -1,0 +1,15 @@
+@startuml
+
+title Content Management System - Admin - Content Sections - Movies - Add Actor Profile - Sequence - Context level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+participant "Admin" as ContentManagementSystem.SoftwareSystems.Admin
+participant "Database" as ContentManagementSystem.SoftwareSystems.Database
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.Admin : Add Actor Profile
+group Add Actor Profile
+ContentManagementSystem.SoftwareSystems.Admin -> ContentManagementSystem.SoftwareSystems.Database : Data Storage\n[SQL]
+end
+
+
+@enduml

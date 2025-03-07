@@ -1,0 +1,51 @@
+@startuml
+!include ..\..\..\.c4s\C4_Sequence.puml
+
+title Content Management System - Edit Restaurant Review - C4 Sequence - Component level
+
+Person(ContentManagementSystem.Actors.Author, "Author", "Authors publish reviews.")
+System(ContentManagementSystem.SoftwareSystems.CM, "CM", "Content Management System is used to manage the process of creating, organizing, editing, and publishing digital content.")
+System(ContentManagementSystem.SoftwareSystems.Database, "Database", "Stores user registration information, data, access logs, etc.")
+
+System_Boundary(ContentManagementSystem.SoftwareSystems.Admin, "Admin")
+    
+Container_Boundary(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Content Sections")
+    Component(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, "Dining", "", "")
+Boundary_End()
+Boundary_End()
+Person(ContentManagementSystem.Actors.RegularPublicWebSurfer, "Regular Public Web Surfer", "Public Surfer, accessible without login.")
+Person(ContentManagementSystem.Actors.Editor, "Editor", "Editors approve content and decide when specific pages go live.")
+
+group Author - Author Edit Restaurant Review
+Rel(ContentManagementSystem.Actors.Author, ContentManagementSystem.SoftwareSystems.CM, "Author Log In", "HTTPS")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Database, "Select User Data", "TCP/IP, SQL")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Database, "Authenticate User", "TCP/IP, SQL")
+Rel(ContentManagementSystem.Actors.Author, ContentManagementSystem.SoftwareSystems.CM, "Edit Restaurant Review", "HTML")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, "Edit Restaurant Review", "HTML")
+Rel(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, ContentManagementSystem.SoftwareSystems.Database, "Data Storage", "SQL")
+Rel(ContentManagementSystem.Actors.Author, ContentManagementSystem.SoftwareSystems.CM, "Author Log Out", "HTTPS")
+end
+group Regular Public Web Surfer - Only See The Old Version Of The Restaurant Review
+Rel(ContentManagementSystem.Actors.RegularPublicWebSurfer, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, "Public Visit Dining", "HTTPS")
+alt The edited restaurant review has not been approved yet
+Rel(ContentManagementSystem.Actors.RegularPublicWebSurfer, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, "Restaurant Review", "HTTPS")
+end
+end
+group Editor - Editor Approve Edited Restaurant Review
+Rel(ContentManagementSystem.Actors.Editor, ContentManagementSystem.SoftwareSystems.CM, "Editor Log In", "HTTPS")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Database, "Select User Data", "TCP/IP, SQL")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Database, "Authenticate User", "TCP/IP, SQL")
+Rel(ContentManagementSystem.Actors.Editor, ContentManagementSystem.SoftwareSystems.CM, "Approve Restaurant Review", "HTTPS/WebSockets")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Database, "Approve Restaurant Review", "HTTPS/WebSockets, SQL")
+Rel(ContentManagementSystem.SoftwareSystems.Database, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, "Show Restaurant Review", "HTTPS")
+Rel(ContentManagementSystem.Actors.Editor, ContentManagementSystem.SoftwareSystems.CM, "Editor Log Out", "HTTPS")
+end
+group Regular Public Web Surfer - See The New Version Of The Restaurant Review
+Rel(ContentManagementSystem.Actors.RegularPublicWebSurfer, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, "Public Visit Dining", "HTTPS")
+alt The edited restaurant review has been approved
+Rel(ContentManagementSystem.Actors.RegularPublicWebSurfer, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, "Restaurant Review", "HTTPS")
+end
+end
+
+
+@enduml

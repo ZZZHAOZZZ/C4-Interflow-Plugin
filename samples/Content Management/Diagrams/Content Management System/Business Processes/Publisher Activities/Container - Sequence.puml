@@ -1,0 +1,24 @@
+@startuml
+
+title Content Management System - Publisher Activities - Sequence - Container level
+
+participant "Publisher" as ContentManagementSystem.Actors.Publisher
+
+box "Admin" #White
+    participant "Content Sections" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections
+end box
+
+participant "Database" as ContentManagementSystem.SoftwareSystems.Database
+
+ContentManagementSystem.Actors.Publisher -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections : Publisher Log In\n[HTTPS]
+group Publisher Log In
+ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections -> ContentManagementSystem.SoftwareSystems.Database : Select User Data\n[TCP/IP, SQL]
+ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections -> ContentManagementSystem.SoftwareSystems.Database : Authenticate User\n[TCP/IP, SQL]
+end
+ContentManagementSystem.Actors.Publisher -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections : Build Movies\n[HTTPS]
+ContentManagementSystem.Actors.Publisher -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections : Build Dining\n[HTTPS]
+ContentManagementSystem.Actors.Publisher -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections : Build News\n[HTTPS]
+ContentManagementSystem.Actors.Publisher -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections : Publisher Log Out\n[HTTPS]
+
+
+@enduml

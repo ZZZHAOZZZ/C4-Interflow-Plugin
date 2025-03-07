@@ -1,0 +1,29 @@
+@startuml
+!include ..\..\..\.c4s\C4_Sequence.puml
+
+title Content Management System - Author Activities - C4 Sequence - Container level
+
+Person(ContentManagementSystem.Actors.Author, "Author", "Authors publish reviews.")
+System(ContentManagementSystem.SoftwareSystems.CM, "CM", "Content Management System is used to manage the process of creating, organizing, editing, and publishing digital content.")
+System(ContentManagementSystem.SoftwareSystems.Database, "Database", "Stores user registration information, data, access logs, etc.")
+
+System_Boundary(ContentManagementSystem.SoftwareSystems.Admin, "Admin")
+    Container(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Content Sections", "", "Content-Sections are primarily used for content classification, helping the CMS organize and manage different types of information, ensuring a clear structure for easy retrieval and display.")
+Boundary_End()
+
+Rel(ContentManagementSystem.Actors.Author, ContentManagementSystem.SoftwareSystems.CM, "Author Log In", "HTTPS")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Database, "Select User Data", "TCP/IP, SQL")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Database, "Authenticate User", "TCP/IP, SQL")
+Rel(ContentManagementSystem.Actors.Author, ContentManagementSystem.SoftwareSystems.CM, "Add Movie Review", "HTML")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Add Movie Review")
+Rel(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, ContentManagementSystem.SoftwareSystems.Database, "Data Storage", "SQL")
+Rel(ContentManagementSystem.Actors.Author, ContentManagementSystem.SoftwareSystems.CM, "Add Actor Profile", "HTML")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Add Actor Profile")
+Rel(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, ContentManagementSystem.SoftwareSystems.Database, "Data Storage", "SQL")
+Rel(ContentManagementSystem.Actors.Author, ContentManagementSystem.SoftwareSystems.CM, "Add Restaurant Review", "HTML")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Add Restaurant Review")
+Rel(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, ContentManagementSystem.SoftwareSystems.Database, "Data Storage", "SQL")
+Rel(ContentManagementSystem.Actors.Author, ContentManagementSystem.SoftwareSystems.CM, "Author Log Out", "HTTPS")
+
+
+@enduml

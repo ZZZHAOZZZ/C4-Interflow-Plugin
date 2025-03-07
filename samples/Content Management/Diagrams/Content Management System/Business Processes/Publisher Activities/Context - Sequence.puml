@@ -1,0 +1,20 @@
+@startuml
+
+title Content Management System - Publisher Activities - Sequence - Context level
+
+participant "Publisher" as ContentManagementSystem.Actors.Publisher
+participant "Admin" as ContentManagementSystem.SoftwareSystems.Admin
+participant "Database" as ContentManagementSystem.SoftwareSystems.Database
+
+ContentManagementSystem.Actors.Publisher -> ContentManagementSystem.SoftwareSystems.Admin : Publisher Log In
+group Publisher Log In
+ContentManagementSystem.SoftwareSystems.Admin -> ContentManagementSystem.SoftwareSystems.Database : Select User Data\n[TCP/IP, SQL]
+ContentManagementSystem.SoftwareSystems.Admin -> ContentManagementSystem.SoftwareSystems.Database : Authenticate User\n[TCP/IP, SQL]
+end
+ContentManagementSystem.Actors.Publisher -> ContentManagementSystem.SoftwareSystems.Admin : Build Movies
+ContentManagementSystem.Actors.Publisher -> ContentManagementSystem.SoftwareSystems.Admin : Build Dining
+ContentManagementSystem.Actors.Publisher -> ContentManagementSystem.SoftwareSystems.Admin : Build News
+ContentManagementSystem.Actors.Publisher -> ContentManagementSystem.SoftwareSystems.Admin : Publisher Log Out
+
+
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+!include ..\..\..\.c4s\C4_Sequence.puml
+
+title Content Management System - Editor Activities - C4 Sequence - Component level
+
+Person(ContentManagementSystem.Actors.Editor, "Editor", "Editors approve content and decide when specific pages go live.")
+System(ContentManagementSystem.SoftwareSystems.CM, "CM", "Content Management System is used to manage the process of creating, organizing, editing, and publishing digital content.")
+System(ContentManagementSystem.SoftwareSystems.Database, "Database", "Stores user registration information, data, access logs, etc.")
+
+System_Boundary(ContentManagementSystem.SoftwareSystems.Admin, "Admin")
+    
+Container_Boundary(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Content Sections")
+    Component(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies, "Movies", "", "")
+    Component(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, "Dining", "", "")
+Boundary_End()
+Boundary_End()
+
+Rel(ContentManagementSystem.Actors.Editor, ContentManagementSystem.SoftwareSystems.CM, "Editor Log In", "HTTPS")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Database, "Select User Data", "TCP/IP, SQL")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Database, "Authenticate User", "TCP/IP, SQL")
+Rel(ContentManagementSystem.Actors.Editor, ContentManagementSystem.SoftwareSystems.CM, "Approve Movie Review", "HTTPS/WebSockets")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Database, "Approve Movie Review", "HTTPS/WebSockets, SQL")
+Rel(ContentManagementSystem.SoftwareSystems.Database, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies, "Show Movie Review", "HTTPS")
+Rel(ContentManagementSystem.Actors.Editor, ContentManagementSystem.SoftwareSystems.CM, "Approve Actor Profile", "HTTPS/WebSockets")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Database, "Approve Actor Profile", "HTTPS/WebSockets, SQL")
+Rel(ContentManagementSystem.SoftwareSystems.Database, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies, "Show Actor Profile", "HTTPS")
+Rel(ContentManagementSystem.Actors.Editor, ContentManagementSystem.SoftwareSystems.CM, "Approve Restaurant Review", "HTTPS/WebSockets")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Database, "Approve Restaurant Review", "HTTPS/WebSockets, SQL")
+Rel(ContentManagementSystem.SoftwareSystems.Database, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, "Show Restaurant Review", "HTTPS")
+Rel(ContentManagementSystem.Actors.Editor, ContentManagementSystem.SoftwareSystems.CM, "Editor Log Out", "HTTPS")
+
+
+@enduml

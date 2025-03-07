@@ -1,0 +1,48 @@
+@startuml
+
+title Content Management System - Author Activities - Sequence - Component level
+
+participant "Author" as ContentManagementSystem.Actors.Author
+participant "CM" as ContentManagementSystem.SoftwareSystems.CM
+participant "Database" as ContentManagementSystem.SoftwareSystems.Database
+
+box "Admin" #White
+    
+box "Content Sections" #White
+    participant "Movies" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies
+    participant "Dining" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining
+end box
+
+end box
+
+
+ContentManagementSystem.Actors.Author -> ContentManagementSystem.SoftwareSystems.CM : Author Log In\n[HTTPS]
+group Author Log In
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Database : Select User Data\n[TCP/IP, SQL]
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Database : Authenticate User\n[TCP/IP, SQL]
+end
+ContentManagementSystem.Actors.Author -> ContentManagementSystem.SoftwareSystems.CM : Add Movie Review\n[HTML]
+group Add Movie Review
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies : Add Movie Review\n[HTML]
+group Add Movie Review
+ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies -> ContentManagementSystem.SoftwareSystems.Database : Data Storage\n[SQL]
+end
+end
+ContentManagementSystem.Actors.Author -> ContentManagementSystem.SoftwareSystems.CM : Add Actor Profile\n[HTML]
+group Add Actor Profile
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies : Add Actor Profile\n[HTML]
+group Add Actor Profile
+ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies -> ContentManagementSystem.SoftwareSystems.Database : Data Storage\n[SQL]
+end
+end
+ContentManagementSystem.Actors.Author -> ContentManagementSystem.SoftwareSystems.CM : Add Restaurant Review\n[HTML]
+group Add Restaurant Review
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining : Add Restaurant Review\n[HTML]
+group Add Restaurant Review
+ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining -> ContentManagementSystem.SoftwareSystems.Database : Data Storage\n[SQL]
+end
+end
+ContentManagementSystem.Actors.Author -> ContentManagementSystem.SoftwareSystems.CM : Author Log Out\n[HTTPS]
+
+
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+!include ..\..\..\..\..\.c4s\C4_Sequence.puml
+
+title Content Management System - CM - Make Restaurant Review Template - C4 Sequence - Context level
+
+System_Ext(C4InterFlow.SoftwareSystems.ExternalSystem, "External", "")
+System(ContentManagementSystem.SoftwareSystems.CM, "CM", "Content Management System is used to manage the process of creating, organizing, editing, and publishing digital content.")
+System(ContentManagementSystem.SoftwareSystems.Admin, "Admin", "Admin is the highest-privilege user in a CMS, responsible for managing users, content, system configurations, and security.")
+System(ContentManagementSystem.SoftwareSystems.Database, "Database", "Stores user registration information, data, access logs, etc.")
+
+Rel(C4InterFlow.SoftwareSystems.ExternalSystem, ContentManagementSystem.SoftwareSystems.CM, "Make Restaurant Review Template", "HTML with Tcl and SQL")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin, "Make Restaurant Review Template")
+Rel(ContentManagementSystem.SoftwareSystems.Admin, ContentManagementSystem.SoftwareSystems.Database, "Data Storage", "SQL")
+
+
+@enduml

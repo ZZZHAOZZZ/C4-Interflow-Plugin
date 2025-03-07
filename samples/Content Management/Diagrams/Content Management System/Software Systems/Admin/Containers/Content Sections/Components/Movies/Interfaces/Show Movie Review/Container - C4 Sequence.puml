@@ -1,0 +1,15 @@
+@startuml
+!include ..\..\..\..\..\..\..\..\..\.c4s\C4_Sequence.puml
+
+title Content Management System - Admin - Content Sections - Movies - Show Movie Review - C4 Sequence - Container level
+
+System_Ext(C4InterFlow.SoftwareSystems.ExternalSystem, "External", "")
+
+System_Boundary(ContentManagementSystem.SoftwareSystems.Admin, "Admin")
+    Container(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Content Sections", "", "Content-Sections are primarily used for content classification, helping the CMS organize and manage different types of information, ensuring a clear structure for easy retrieval and display.")
+Boundary_End()
+
+Rel(C4InterFlow.SoftwareSystems.ExternalSystem, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Show Movie Review")
+
+
+@enduml

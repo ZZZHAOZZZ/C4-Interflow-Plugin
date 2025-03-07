@@ -1,0 +1,17 @@
+@startuml
+!include ..\..\..\..\..\..\..\..\..\.c4s\C4_Sequence.puml
+
+title Content Management System - Admin - Content Sections - Dining - Make Restaurant Review Template - C4 Sequence - Container level
+
+System_Ext(C4InterFlow.SoftwareSystems.ExternalSystem, "External", "")
+
+System_Boundary(ContentManagementSystem.SoftwareSystems.Admin, "Admin")
+    Container(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Content Sections", "", "Content-Sections are primarily used for content classification, helping the CMS organize and manage different types of information, ensuring a clear structure for easy retrieval and display.")
+Boundary_End()
+System(ContentManagementSystem.SoftwareSystems.Database, "Database", "Stores user registration information, data, access logs, etc.")
+
+Rel(C4InterFlow.SoftwareSystems.ExternalSystem, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Make Restaurant Review Template")
+Rel(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, ContentManagementSystem.SoftwareSystems.Database, "Data Storage", "SQL")
+
+
+@enduml

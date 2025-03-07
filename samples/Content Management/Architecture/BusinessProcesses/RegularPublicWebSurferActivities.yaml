@@ -1,0 +1,15 @@
+ContentManagementSystem:
+  BusinessProcesses:
+    RegularPublicWebSurferActivities:
+      Label: Regular Public Web Surfer Activities
+      Activities:
+      - Label: Regular Public Web Surfer Activities
+        Actor: ContentManagementSystem.Actors.RegularPublicWebSurfer
+        Flow:
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies.Interfaces.PublicVisitMovies
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies.Interfaces.MovieReview
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies.Interfaces.MoveToDining

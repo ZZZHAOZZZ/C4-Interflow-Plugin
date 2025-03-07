@@ -1,0 +1,31 @@
+@startuml
+!include ..\..\..\.c4s\C4_Container.puml
+
+AddElementTag("c4interflow:lifecycle:new", $bgColor=green, $fontColor=#ffffff, $borderColor=green, $shadowing="False")
+AddElementTag("c4interflow:lifecycle:changed", $bgColor=orange, $fontColor=#ffffff, $borderColor=orange, $shadowing="False")
+AddElementTag("c4interflow:lifecycle:removed", $bgColor=red, $fontColor=#ffffff, $borderColor=red, $shadowing="False")
+
+AddRelTag("c4interflow:lifecycle:new", $textColor=green, $lineColor=green)
+AddRelTag("c4interflow:lifecycle:changed", $textColor=orange, $lineColor=orange)
+AddRelTag("c4interflow:lifecycle:removed", $textColor=red, $lineColor=red)
+
+SHOW_PERSON_PORTRAIT()
+LAYOUT_TOP_DOWN()
+
+skinparam linetype polyline
+
+title Content Management System - Publisher Activities - C4 - Container level
+
+Person(ContentManagementSystem.Actors.Publisher, "Publisher", "The publisher decides what major content sections are available.")
+
+System_Boundary(ContentManagementSystem.SoftwareSystems.Admin, "Admin") {
+    Container(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Content Sections", "", "Content-Sections are primarily used for content classification, helping the CMS organize and manage different types of information, ensuring a clear structure for easy retrieval and display.")
+}
+System(ContentManagementSystem.SoftwareSystems.Database, "Database", "Stores user registration information, data, access logs, etc.")
+
+Rel(ContentManagementSystem.Actors.Publisher, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Publisher Log In\nBuild Movies\nBuild Dining\nBuild News\nPublisher Log Out", "HTTPS", $tags="protocol:https")
+Rel(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, ContentManagementSystem.SoftwareSystems.Database, "Select User Data\nAuthenticate User", "TCP/IP, SQL", $tags="protocol:tcp/ip, sql")
+
+
+SHOW_LEGEND()
+@enduml

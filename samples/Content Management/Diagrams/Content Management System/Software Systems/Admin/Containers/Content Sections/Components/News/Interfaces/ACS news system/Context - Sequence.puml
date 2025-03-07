@@ -1,0 +1,11 @@
+@startuml
+
+title Content Management System - Admin - Content Sections - News - ACS news system - Sequence - Context level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+participant "Admin" as ContentManagementSystem.SoftwareSystems.Admin
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.Admin : ACS News System
+
+
+@enduml

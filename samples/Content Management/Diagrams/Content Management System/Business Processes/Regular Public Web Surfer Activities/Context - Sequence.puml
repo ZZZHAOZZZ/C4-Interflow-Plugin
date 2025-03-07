@@ -1,0 +1,13 @@
+@startuml
+
+title Content Management System - Regular Public Web Surfer Activities - Sequence - Context level
+
+participant "Regular Public Web Surfer" as ContentManagementSystem.Actors.RegularPublicWebSurfer
+participant "Admin" as ContentManagementSystem.SoftwareSystems.Admin
+
+ContentManagementSystem.Actors.RegularPublicWebSurfer -> ContentManagementSystem.SoftwareSystems.Admin : Public Visit Movies
+ContentManagementSystem.Actors.RegularPublicWebSurfer -> ContentManagementSystem.SoftwareSystems.Admin : Movie Review
+ContentManagementSystem.Actors.RegularPublicWebSurfer -> ContentManagementSystem.SoftwareSystems.Admin : Move To Dining
+
+
+@enduml

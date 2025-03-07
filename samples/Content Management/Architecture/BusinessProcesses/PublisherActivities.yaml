@@ -1,0 +1,19 @@
+ContentManagementSystem:
+  BusinessProcesses:
+    PublisherActivities:
+      Label: Publisher Activities
+      Activities:
+      - Label: Publisher Activities
+        Actor: ContentManagementSystem.Actors.Publisher
+        Flow:
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Interfaces.PublisherLogIn
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Interfaces.BuildMovies
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Interfaces.BuildDining 
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Interfaces.BuildNews
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Interfaces.PublisherLogOut

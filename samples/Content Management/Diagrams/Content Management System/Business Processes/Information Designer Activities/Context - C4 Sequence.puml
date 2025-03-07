@@ -1,0 +1,21 @@
+@startuml
+!include ..\..\..\.c4s\C4_Sequence.puml
+
+title Content Management System - Information Designer Activities - C4 Sequence - Context level
+
+Person(ContentManagementSystem.Actors.InformationDesigner, "Information Designer", "The information designer decides what navigational links are available from every document on the page.")
+System(ContentManagementSystem.SoftwareSystems.CM, "CM", "Content Management System is used to manage the process of creating, organizing, editing, and publishing digital content.")
+System(ContentManagementSystem.SoftwareSystems.Database, "Database", "Stores user registration information, data, access logs, etc.")
+System(ContentManagementSystem.SoftwareSystems.Admin, "Admin", "Admin is the highest-privilege user in a CMS, responsible for managing users, content, system configurations, and security.")
+
+Rel(ContentManagementSystem.Actors.InformationDesigner, ContentManagementSystem.SoftwareSystems.CM, "Information Designer Log In", "HTTPS")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Database, "Select User Data", "TCP/IP, SQL")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Database, "Authenticate User", "TCP/IP, SQL")
+Rel(ContentManagementSystem.Actors.InformationDesigner, ContentManagementSystem.SoftwareSystems.CM, "Navigation", "HTML")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin, "Move To Movies")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin, "Move To News")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin, "Move To Dining")
+Rel(ContentManagementSystem.Actors.InformationDesigner, ContentManagementSystem.SoftwareSystems.CM, "Information Designer Log Out", "HTTPS")
+
+
+@enduml

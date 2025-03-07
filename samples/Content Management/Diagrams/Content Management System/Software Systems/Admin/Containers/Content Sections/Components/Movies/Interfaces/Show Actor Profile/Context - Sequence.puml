@@ -1,0 +1,11 @@
+@startuml
+
+title Content Management System - Admin - Content Sections - Movies - Show Actor Profile - Sequence - Context level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+participant "Admin" as ContentManagementSystem.SoftwareSystems.Admin
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.Admin : Show Actor Profile
+
+
+@enduml

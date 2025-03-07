@@ -1,0 +1,28 @@
+@startuml
+
+title Content Management System - Information Designer Activities - Sequence - Container level
+
+participant "Information Designer" as ContentManagementSystem.Actors.InformationDesigner
+participant "CM" as ContentManagementSystem.SoftwareSystems.CM
+participant "Database" as ContentManagementSystem.SoftwareSystems.Database
+
+box "Admin" #White
+    participant "Content Sections" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections
+end box
+
+
+ContentManagementSystem.Actors.InformationDesigner -> ContentManagementSystem.SoftwareSystems.CM : Information Designer Log In\n[HTTPS]
+group Information Designer Log In
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Database : Select User Data\n[TCP/IP, SQL]
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Database : Authenticate User\n[TCP/IP, SQL]
+end
+ContentManagementSystem.Actors.InformationDesigner -> ContentManagementSystem.SoftwareSystems.CM : Navigation\n[HTML]
+group Navigation
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections : Move To Movies
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections : Move To News
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections : Move To Dining
+end
+ContentManagementSystem.Actors.InformationDesigner -> ContentManagementSystem.SoftwareSystems.CM : Information Designer Log Out\n[HTTPS]
+
+
+@enduml

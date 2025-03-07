@@ -1,0 +1,27 @@
+@startuml
+
+title Content Management System - CM - Approve Movie Review - Sequence - Component level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+participant "CM" as ContentManagementSystem.SoftwareSystems.CM
+participant "Database" as ContentManagementSystem.SoftwareSystems.Database
+
+box "Admin" #White
+    
+box "Content Sections" #White
+    participant "Movies" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies
+end box
+
+end box
+
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.CM : Approve Movie Review\n[HTTPS/WebSockets]
+group Approve Movie Review
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Database : Approve Movie Review\n[HTTPS/WebSockets, SQL]
+group Approve Movie Review
+ContentManagementSystem.SoftwareSystems.Database -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies : Show Movie Review\n[HTTPS]
+end
+end
+
+
+@enduml

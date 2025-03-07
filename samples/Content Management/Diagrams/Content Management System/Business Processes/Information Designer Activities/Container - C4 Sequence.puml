@@ -1,0 +1,24 @@
+@startuml
+!include ..\..\..\.c4s\C4_Sequence.puml
+
+title Content Management System - Information Designer Activities - C4 Sequence - Container level
+
+Person(ContentManagementSystem.Actors.InformationDesigner, "Information Designer", "The information designer decides what navigational links are available from every document on the page.")
+System(ContentManagementSystem.SoftwareSystems.CM, "CM", "Content Management System is used to manage the process of creating, organizing, editing, and publishing digital content.")
+System(ContentManagementSystem.SoftwareSystems.Database, "Database", "Stores user registration information, data, access logs, etc.")
+
+System_Boundary(ContentManagementSystem.SoftwareSystems.Admin, "Admin")
+    Container(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Content Sections", "", "Content-Sections are primarily used for content classification, helping the CMS organize and manage different types of information, ensuring a clear structure for easy retrieval and display.")
+Boundary_End()
+
+Rel(ContentManagementSystem.Actors.InformationDesigner, ContentManagementSystem.SoftwareSystems.CM, "Information Designer Log In", "HTTPS")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Database, "Select User Data", "TCP/IP, SQL")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Database, "Authenticate User", "TCP/IP, SQL")
+Rel(ContentManagementSystem.Actors.InformationDesigner, ContentManagementSystem.SoftwareSystems.CM, "Navigation", "HTML")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Move To Movies")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Move To News")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Move To Dining")
+Rel(ContentManagementSystem.Actors.InformationDesigner, ContentManagementSystem.SoftwareSystems.CM, "Information Designer Log Out", "HTTPS")
+
+
+@enduml

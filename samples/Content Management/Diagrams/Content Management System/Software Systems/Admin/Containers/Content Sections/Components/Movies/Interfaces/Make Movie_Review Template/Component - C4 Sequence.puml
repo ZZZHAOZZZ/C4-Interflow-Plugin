@@ -1,0 +1,20 @@
+@startuml
+!include ..\..\..\..\..\..\..\..\..\.c4s\C4_Sequence.puml
+
+title Content Management System - Admin - Content Sections - Movies - Make Movie_Review Template - C4 Sequence - Component level
+
+System_Ext(C4InterFlow.SoftwareSystems.ExternalSystem, "External", "")
+
+System_Boundary(ContentManagementSystem.SoftwareSystems.Admin, "Admin")
+    
+Container_Boundary(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Content Sections")
+    Component(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies, "Movies", "", "")
+Boundary_End()
+Boundary_End()
+System(ContentManagementSystem.SoftwareSystems.Database, "Database", "Stores user registration information, data, access logs, etc.")
+
+Rel(C4InterFlow.SoftwareSystems.ExternalSystem, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies, "Make Movie_Review Template", "ADP script")
+Rel(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies, ContentManagementSystem.SoftwareSystems.Database, "Data Storage", "SQL")
+
+
+@enduml

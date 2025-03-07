@@ -1,0 +1,20 @@
+@startuml
+!include ..\..\..\..\..\.c4s\C4_Sequence.puml
+
+title Content Management System - Database - Approve Movie Review - C4 Sequence - Component level
+
+System_Ext(C4InterFlow.SoftwareSystems.ExternalSystem, "External", "")
+System(ContentManagementSystem.SoftwareSystems.Database, "Database", "Stores user registration information, data, access logs, etc.")
+
+System_Boundary(ContentManagementSystem.SoftwareSystems.Admin, "Admin")
+    
+Container_Boundary(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Content Sections")
+    Component(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies, "Movies", "", "")
+Boundary_End()
+Boundary_End()
+
+Rel(C4InterFlow.SoftwareSystems.ExternalSystem, ContentManagementSystem.SoftwareSystems.Database, "Approve Movie Review", "HTTPS/WebSockets, SQL")
+Rel(ContentManagementSystem.SoftwareSystems.Database, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies, "Show Movie Review", "HTTPS")
+
+
+@enduml

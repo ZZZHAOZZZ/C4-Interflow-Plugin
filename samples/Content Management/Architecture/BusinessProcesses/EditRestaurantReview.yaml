@@ -1,0 +1,47 @@
+ContentManagementSystem:
+  BusinessProcesses:
+    EditRestaurantReview:
+      Label: Edit Restaurant Review
+      Activities:
+      - Label: Author Edit Restaurant Review
+        Actor: ContentManagementSystem.Actors.Author
+        Flow:
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.CM.Interfaces.AuthorLogIn
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.CM.Interfaces.EditRestaurantReview
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.CM.Interfaces.AuthorLogOut
+      - Label: Only See The Old Version Of The Restaurant Review
+        Actor: ContentManagementSystem.Actors.RegularPublicWebSurfer
+        Flow:
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining.Interfaces.PublicVisitDining
+          - Type: If
+            Expression: The edited restaurant review has not been approved yet
+            Flows:
+            - Type: Use
+              Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining.Interfaces.RestaurantReview
+      - Label: Editor Approve Edited Restaurant Review
+        Actor: ContentManagementSystem.Actors.Editor
+        Flow:
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.CM.Interfaces.EditorLogIn
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.CM.Interfaces.ApproveRestaurantReview
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.CM.Interfaces.EditorLogOut
+      - Label: See The New Version Of The Restaurant Review
+        Actor: ContentManagementSystem.Actors.RegularPublicWebSurfer
+        Flow:
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining.Interfaces.PublicVisitDining
+          - Type: If
+            Expression: The edited restaurant review has been approved
+            Flows:
+            - Type: Use
+              Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining.Interfaces.RestaurantReview

@@ -1,0 +1,18 @@
+@startuml
+!include ..\..\..\..\..\..\..\..\..\.c4s\C4_Sequence.puml
+
+title Content Management System - Admin - Content Sections - Dining - Show Restaurant Review - C4 Sequence - Component level
+
+System_Ext(C4InterFlow.SoftwareSystems.ExternalSystem, "External", "")
+
+System_Boundary(ContentManagementSystem.SoftwareSystems.Admin, "Admin")
+    
+Container_Boundary(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Content Sections")
+    Component(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, "Dining", "", "")
+Boundary_End()
+Boundary_End()
+
+Rel(C4InterFlow.SoftwareSystems.ExternalSystem, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, "Show Restaurant Review", "HTTPS")
+
+
+@enduml

@@ -1,0 +1,28 @@
+@startuml
+
+title Content Management System - Regular Public Web Surfer Activities - Sequence - Component level
+
+participant "Regular Public Web Surfer" as ContentManagementSystem.Actors.RegularPublicWebSurfer
+
+box "Admin" #White
+    
+box "Content Sections" #White
+    participant "Movies" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies
+    participant "Dining" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining
+end box
+
+end box
+
+
+ContentManagementSystem.Actors.RegularPublicWebSurfer -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies : Public Visit Movies\n[HTTPS]
+ContentManagementSystem.Actors.RegularPublicWebSurfer -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies : Movie_Review\n[HTTPS]
+group Movie_Review
+ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies : See Approved Content\n[HTTPS]
+end
+ContentManagementSystem.Actors.RegularPublicWebSurfer -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies : Move To Dining\n[Hyperlink]
+group Move To Dining
+ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining : Enter Dining\n[HTTPS]
+end
+
+
+@enduml

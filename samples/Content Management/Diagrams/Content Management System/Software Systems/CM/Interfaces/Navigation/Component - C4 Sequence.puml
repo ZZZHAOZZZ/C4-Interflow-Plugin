@@ -1,0 +1,27 @@
+@startuml
+!include ..\..\..\..\..\.c4s\C4_Sequence.puml
+
+title Content Management System - CM - Navigation - C4 Sequence - Component level
+
+System_Ext(C4InterFlow.SoftwareSystems.ExternalSystem, "External", "")
+System(ContentManagementSystem.SoftwareSystems.CM, "CM", "Content Management System is used to manage the process of creating, organizing, editing, and publishing digital content.")
+
+System_Boundary(ContentManagementSystem.SoftwareSystems.Admin, "Admin")
+    
+Container_Boundary(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Content Sections")
+    Component(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, "Dining", "", "")
+    Component(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies, "Movies", "", "")
+    Component(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.News, "News", "", "")
+Boundary_End()
+Boundary_End()
+
+Rel(C4InterFlow.SoftwareSystems.ExternalSystem, ContentManagementSystem.SoftwareSystems.CM, "Navigation", "HTML")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, "Move To Movies", "Hyperlink")
+Rel(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies, "Enter Movies", "HTTPS")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies, "Move To News", "Hyperlink")
+Rel(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.News, "Enter News", "HTTPS")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies, "Move To Dining", "Hyperlink")
+Rel(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, "Enter Dining", "HTTPS")
+
+
+@enduml

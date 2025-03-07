@@ -1,0 +1,48 @@
+@startuml
+
+title Content Management System - Editor Activities - Sequence - Component level
+
+participant "Editor" as ContentManagementSystem.Actors.Editor
+participant "CM" as ContentManagementSystem.SoftwareSystems.CM
+participant "Database" as ContentManagementSystem.SoftwareSystems.Database
+
+box "Admin" #White
+    
+box "Content Sections" #White
+    participant "Movies" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies
+    participant "Dining" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining
+end box
+
+end box
+
+
+ContentManagementSystem.Actors.Editor -> ContentManagementSystem.SoftwareSystems.CM : Editor Log In\n[HTTPS]
+group Editor Log In
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Database : Select User Data\n[TCP/IP, SQL]
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Database : Authenticate User\n[TCP/IP, SQL]
+end
+ContentManagementSystem.Actors.Editor -> ContentManagementSystem.SoftwareSystems.CM : Approve Movie Review\n[HTTPS/WebSockets]
+group Approve Movie Review
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Database : Approve Movie Review\n[HTTPS/WebSockets, SQL]
+group Approve Movie Review
+ContentManagementSystem.SoftwareSystems.Database -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies : Show Movie Review\n[HTTPS]
+end
+end
+ContentManagementSystem.Actors.Editor -> ContentManagementSystem.SoftwareSystems.CM : Approve Actor Profile\n[HTTPS/WebSockets]
+group Approve Actor Profile
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Database : Approve Actor Profile\n[HTTPS/WebSockets, SQL]
+group Approve Actor Profile
+ContentManagementSystem.SoftwareSystems.Database -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies : Show Actor Profile\n[HTTPS]
+end
+end
+ContentManagementSystem.Actors.Editor -> ContentManagementSystem.SoftwareSystems.CM : Approve Restaurant Review\n[HTTPS/WebSockets]
+group Approve Restaurant Review
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Database : Approve Restaurant Review\n[HTTPS/WebSockets, SQL]
+group Approve Restaurant Review
+ContentManagementSystem.SoftwareSystems.Database -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining : Show Restaurant Review\n[HTTPS]
+end
+end
+ContentManagementSystem.Actors.Editor -> ContentManagementSystem.SoftwareSystems.CM : Editor Log Out\n[HTTPS]
+
+
+@enduml

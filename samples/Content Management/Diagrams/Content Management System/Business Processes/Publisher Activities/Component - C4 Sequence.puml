@@ -1,0 +1,22 @@
+@startuml
+!include ..\..\..\.c4s\C4_Sequence.puml
+
+title Content Management System - Publisher Activities - C4 Sequence - Component level
+
+Person(ContentManagementSystem.Actors.Publisher, "Publisher", "The publisher decides what major content sections are available.")
+
+System_Boundary(ContentManagementSystem.SoftwareSystems.Admin, "Admin")
+    Container(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Content Sections", "", "Content-Sections are primarily used for content classification, helping the CMS organize and manage different types of information, ensuring a clear structure for easy retrieval and display.")
+Boundary_End()
+System(ContentManagementSystem.SoftwareSystems.Database, "Database", "Stores user registration information, data, access logs, etc.")
+
+Rel(ContentManagementSystem.Actors.Publisher, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Publisher Log In", "HTTPS")
+Rel(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, ContentManagementSystem.SoftwareSystems.Database, "Select User Data", "TCP/IP, SQL")
+Rel(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, ContentManagementSystem.SoftwareSystems.Database, "Authenticate User", "TCP/IP, SQL")
+Rel(ContentManagementSystem.Actors.Publisher, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Build Movies", "HTTPS")
+Rel(ContentManagementSystem.Actors.Publisher, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Build Dining", "HTTPS")
+Rel(ContentManagementSystem.Actors.Publisher, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Build News", "HTTPS")
+Rel(ContentManagementSystem.Actors.Publisher, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Publisher Log Out", "HTTPS")
+
+
+@enduml

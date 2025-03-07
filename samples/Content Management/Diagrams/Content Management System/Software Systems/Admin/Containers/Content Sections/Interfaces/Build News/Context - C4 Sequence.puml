@@ -1,0 +1,12 @@
+@startuml
+!include ..\..\..\..\..\..\..\.c4s\C4_Sequence.puml
+
+title Content Management System - Admin - Content Sections - Build News - C4 Sequence - Context level
+
+System_Ext(C4InterFlow.SoftwareSystems.ExternalSystem, "External", "")
+System(ContentManagementSystem.SoftwareSystems.Admin, "Admin", "Admin is the highest-privilege user in a CMS, responsible for managing users, content, system configurations, and security.")
+
+Rel(C4InterFlow.SoftwareSystems.ExternalSystem, ContentManagementSystem.SoftwareSystems.Admin, "Build News")
+
+
+@enduml

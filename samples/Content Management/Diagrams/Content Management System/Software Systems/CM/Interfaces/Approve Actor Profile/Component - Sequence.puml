@@ -1,0 +1,27 @@
+@startuml
+
+title Content Management System - CM - Approve Actor Profile - Sequence - Component level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+participant "CM" as ContentManagementSystem.SoftwareSystems.CM
+participant "Database" as ContentManagementSystem.SoftwareSystems.Database
+
+box "Admin" #White
+    
+box "Content Sections" #White
+    participant "Movies" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies
+end box
+
+end box
+
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.CM : Approve Actor Profile\n[HTTPS/WebSockets]
+group Approve Actor Profile
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Database : Approve Actor Profile\n[HTTPS/WebSockets, SQL]
+group Approve Actor Profile
+ContentManagementSystem.SoftwareSystems.Database -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies : Show Actor Profile\n[HTTPS]
+end
+end
+
+
+@enduml

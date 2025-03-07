@@ -1,0 +1,15 @@
+@startuml
+
+title Content Management System - Admin - Content Sections - Movies - Add Movie Review - Sequence - Context level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+participant "Admin" as ContentManagementSystem.SoftwareSystems.Admin
+participant "Database" as ContentManagementSystem.SoftwareSystems.Database
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.Admin : Add Movie Review
+group Add Movie Review
+ContentManagementSystem.SoftwareSystems.Admin -> ContentManagementSystem.SoftwareSystems.Database : Data Storage\n[SQL]
+end
+
+
+@enduml

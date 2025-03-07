@@ -1,0 +1,17 @@
+@startuml
+!include ..\..\..\.c4s\C4_Sequence.puml
+
+title Content Management System - Regular Public Web Surfer Activities - C4 Sequence - Container level
+
+Person(ContentManagementSystem.Actors.RegularPublicWebSurfer, "Regular Public Web Surfer", "Public Surfer, accessible without login.")
+
+System_Boundary(ContentManagementSystem.SoftwareSystems.Admin, "Admin")
+    Container(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Content Sections", "", "Content-Sections are primarily used for content classification, helping the CMS organize and manage different types of information, ensuring a clear structure for easy retrieval and display.")
+Boundary_End()
+
+Rel(ContentManagementSystem.Actors.RegularPublicWebSurfer, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Public Visit Movies")
+Rel(ContentManagementSystem.Actors.RegularPublicWebSurfer, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Movie Review")
+Rel(ContentManagementSystem.Actors.RegularPublicWebSurfer, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Move To Dining")
+
+
+@enduml

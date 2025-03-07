@@ -1,0 +1,19 @@
+@startuml
+
+title Content Management System - Admin - Content Sections - Movies - Public Visit Movies - Sequence - Component level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+
+box "Admin" #White
+    
+box "Content Sections" #White
+    participant "Movies" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies
+end box
+
+end box
+
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies : Public Visit Movies\n[HTTPS]
+
+
+@enduml

@@ -1,0 +1,28 @@
+@startuml
+!include ..\..\..\..\..\.c4s\C4_Context.puml
+
+AddElementTag("c4interflow:lifecycle:new", $bgColor=green, $fontColor=#ffffff, $borderColor=green, $shadowing="False")
+AddElementTag("c4interflow:lifecycle:changed", $bgColor=orange, $fontColor=#ffffff, $borderColor=orange, $shadowing="False")
+AddElementTag("c4interflow:lifecycle:removed", $bgColor=red, $fontColor=#ffffff, $borderColor=red, $shadowing="False")
+
+AddRelTag("c4interflow:lifecycle:new", $textColor=green, $lineColor=green)
+AddRelTag("c4interflow:lifecycle:changed", $textColor=orange, $lineColor=orange)
+AddRelTag("c4interflow:lifecycle:removed", $textColor=red, $lineColor=red)
+
+SHOW_PERSON_PORTRAIT()
+LAYOUT_TOP_DOWN()
+
+skinparam linetype polyline
+
+title Content Management System - CM - Add Actor Profile - C4 Static - Context level
+
+System(ContentManagementSystem.SoftwareSystems.CM, "CM", "Content Management System is used to manage the process of creating, organizing, editing, and publishing digital content.")
+System(ContentManagementSystem.SoftwareSystems.Admin, "Admin", "Admin is the highest-privilege user in a CMS, responsible for managing users, content, system configurations, and security.")
+System(ContentManagementSystem.SoftwareSystems.Database, "Database", "Stores user registration information, data, access logs, etc.")
+
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin, "Uses", "HTML", $tags="protocol:html")
+Rel(ContentManagementSystem.SoftwareSystems.Admin, ContentManagementSystem.SoftwareSystems.Database, "Uses", "SQL", $tags="protocol:sql")
+
+
+SHOW_LEGEND()
+@enduml

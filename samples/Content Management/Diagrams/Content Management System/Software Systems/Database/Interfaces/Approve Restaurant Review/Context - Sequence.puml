@@ -1,0 +1,15 @@
+@startuml
+
+title Content Management System - Database - Approve Restaurant Review - Sequence - Context level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+participant "Database" as ContentManagementSystem.SoftwareSystems.Database
+participant "Admin" as ContentManagementSystem.SoftwareSystems.Admin
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.Database : Approve Restaurant Review\n[HTTPS/WebSockets, SQL]
+group Approve Restaurant Review
+ContentManagementSystem.SoftwareSystems.Database -> ContentManagementSystem.SoftwareSystems.Admin : Show Restaurant Review
+end
+
+
+@enduml

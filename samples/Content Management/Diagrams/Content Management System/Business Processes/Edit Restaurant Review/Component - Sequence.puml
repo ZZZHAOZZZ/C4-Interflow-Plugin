@@ -1,0 +1,64 @@
+@startuml
+
+title Content Management System - Edit Restaurant Review - Sequence - Component level
+
+participant "Author" as ContentManagementSystem.Actors.Author
+participant "CM" as ContentManagementSystem.SoftwareSystems.CM
+participant "Database" as ContentManagementSystem.SoftwareSystems.Database
+
+box "Admin" #White
+    
+box "Content Sections" #White
+    participant "Dining" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining
+end box
+
+end box
+
+participant "Regular Public Web Surfer" as ContentManagementSystem.Actors.RegularPublicWebSurfer
+participant "Editor" as ContentManagementSystem.Actors.Editor
+
+group Author - Author Edit Restaurant Review
+ContentManagementSystem.Actors.Author -> ContentManagementSystem.SoftwareSystems.CM : Author Log In\n[HTTPS]
+group Author Log In
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Database : Select User Data\n[TCP/IP, SQL]
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Database : Authenticate User\n[TCP/IP, SQL]
+end
+ContentManagementSystem.Actors.Author -> ContentManagementSystem.SoftwareSystems.CM : Edit Restaurant Review\n[HTML]
+group Edit Restaurant Review
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining : Edit Restaurant Review\n[HTML]
+group Edit Restaurant Review
+ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining -> ContentManagementSystem.SoftwareSystems.Database : Data Storage\n[SQL]
+end
+end
+ContentManagementSystem.Actors.Author -> ContentManagementSystem.SoftwareSystems.CM : Author Log Out\n[HTTPS]
+end
+group Regular Public Web Surfer - Only See The Old Version Of The Restaurant Review
+ContentManagementSystem.Actors.RegularPublicWebSurfer -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining : Public Visit Dining\n[HTTPS]
+alt The edited restaurant review has not been approved yet
+ContentManagementSystem.Actors.RegularPublicWebSurfer -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining : Restaurant Review\n[HTTPS]
+end
+end
+group Editor - Editor Approve Edited Restaurant Review
+ContentManagementSystem.Actors.Editor -> ContentManagementSystem.SoftwareSystems.CM : Editor Log In\n[HTTPS]
+group Editor Log In
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Database : Select User Data\n[TCP/IP, SQL]
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Database : Authenticate User\n[TCP/IP, SQL]
+end
+ContentManagementSystem.Actors.Editor -> ContentManagementSystem.SoftwareSystems.CM : Approve Restaurant Review\n[HTTPS/WebSockets]
+group Approve Restaurant Review
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Database : Approve Restaurant Review\n[HTTPS/WebSockets, SQL]
+group Approve Restaurant Review
+ContentManagementSystem.SoftwareSystems.Database -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining : Show Restaurant Review\n[HTTPS]
+end
+end
+ContentManagementSystem.Actors.Editor -> ContentManagementSystem.SoftwareSystems.CM : Editor Log Out\n[HTTPS]
+end
+group Regular Public Web Surfer - See The New Version Of The Restaurant Review
+ContentManagementSystem.Actors.RegularPublicWebSurfer -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining : Public Visit Dining\n[HTTPS]
+alt The edited restaurant review has been approved
+ContentManagementSystem.Actors.RegularPublicWebSurfer -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining : Restaurant Review\n[HTTPS]
+end
+end
+
+
+@enduml

@@ -1,0 +1,26 @@
+ContentManagementSystem:
+  Actors:
+    Publisher:
+      Type: Person
+      Label: Publisher
+      Description: The publisher decides what major content sections are available.
+    Programmer:
+      Type: Person
+      Label: Programmer
+      Description: The programmer builds production templates.
+    InformationDesigner:
+      Type: Person
+      Label: Information Designer
+      Description: The information designer decides what navigational links are available from every document on the page.
+    Author:
+      Type: Person
+      Label: Author
+      Description: Authors publish reviews.
+    Editor:
+      Type: Person
+      Label: Editor
+      Description: Editors approve content and decide when specific pages go live.
+    RegularPublicWebSurfer:
+      Type: Person
+      Label: Regular Public Web Surfer
+      Description: Public Surfer, accessible without login.

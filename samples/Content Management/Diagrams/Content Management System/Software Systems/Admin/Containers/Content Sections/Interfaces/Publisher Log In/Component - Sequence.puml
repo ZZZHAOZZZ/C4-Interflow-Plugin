@@ -1,0 +1,20 @@
+@startuml
+
+title Content Management System - Admin - Content Sections - Publisher Log In - Sequence - Component level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+
+box "Admin" #White
+    participant "Content Sections" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections
+end box
+
+participant "Database" as ContentManagementSystem.SoftwareSystems.Database
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections : Publisher Log In\n[HTTPS]
+group Publisher Log In
+ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections -> ContentManagementSystem.SoftwareSystems.Database : Select User Data\n[TCP/IP, SQL]
+ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections -> ContentManagementSystem.SoftwareSystems.Database : Authenticate User\n[TCP/IP, SQL]
+end
+
+
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+
+title Content Management System - Admin - Content Sections - Movies - Add Actor Profile - Sequence - Component level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+
+box "Admin" #White
+    
+box "Content Sections" #White
+    participant "Movies" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies
+end box
+
+end box
+
+participant "Database" as ContentManagementSystem.SoftwareSystems.Database
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies : Add Actor Profile\n[HTML]
+group Add Actor Profile
+ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies -> ContentManagementSystem.SoftwareSystems.Database : Data Storage\n[SQL]
+end
+
+
+@enduml

@@ -1,0 +1,141 @@
+ContentManagementSystem:
+  SoftwareSystems:
+    CM:
+      Label: CM
+      Boundary: Internal
+      Description: Content Management System is used to manage the process of creating, organizing, editing, and publishing digital content.
+      Technology: SQL
+      Interfaces:
+        InformationDesignerLogIn:
+          Label: Information Designer Log In
+          Protocol: HTTPS
+          IsPrivate: false
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.SelectUserData
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.AuthenticateUser   
+        Navigation:
+          Label: Navigation
+          Protocol: HTML 
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining.Interfaces.MoveToMovies
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies.Interfaces.MoveToNews
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies.Interfaces.MoveToDining
+        InformationDesignerLogOut:
+          Label: Information Designer Log Out
+          Protocol: HTTPS
+          IsPrivate: false
+        ProgrammerLogIn:
+          Label: Programmer Log In
+          Protocol: HTTPS
+          IsPrivate: false
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.SelectUserData
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.AuthenticateUser   
+        MakeMovieReviewTemplate:
+          Label: Make Movie Review Template
+          Protocol: HTML with Tcl and SQL
+          IsPrivate: false
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies.Interfaces.MakeMovieReviewTemplate
+        MakeActorProfileTemplate:
+          Label: Make Actor Profile Template
+          Protocol: HTML with Tcl and SQL
+          IsPrivate: false
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies.Interfaces.MakeActorProfileTemplate
+        MakeRestaurantReviewTemplate:
+          Label: Make Restaurant Review Template
+          Protocol: HTML with Tcl and SQL
+          IsPrivate: false
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining.Interfaces.MakeRestaurantReviewTemplate
+        ProgrammerLogOut:
+          Label: Programmer Log Out
+          Protocol: HTTPS
+          IsPrivate: false
+        AuthorLogIn:
+          Label: Author Log In
+          Protocol: HTTPS
+          IsPrivate: false
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.SelectUserData
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.AuthenticateUser   
+        AddMovieReview:
+          Label: Add Movie Review
+          Protocol: HTML
+          IsPrivate: false
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies.Interfaces.AddMovieReview
+        AddActorProfile:
+          Label: Add Actor Profile
+          Protocol: HTML
+          IsPrivate: false
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies.Interfaces.AddActorProfile
+        AddRestaurantReview:
+          Label: Add Restaurant Review
+          Protocol: HTML
+          IsPrivate: false
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining.Interfaces.AddRestaurantReview
+        EditRestaurantReview:
+          Label: Edit Restaurant Review
+          Protocol: HTML
+          IsPrivate: false
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining.Interfaces.EditRestaurantReview
+        AuthorLogOut:
+          Label: Author Log Out
+          Protocol: HTTPS
+          IsPrivate: false
+        EditorLogIn:
+          Label: Editor Log In
+          Protocol: HTTPS
+          IsPrivate: false
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.SelectUserData
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.AuthenticateUser   
+        ApproveMovieReview:
+          Label: Approve Movie Review
+          Protocol: HTTPS/WebSockets
+          IsPrivate: false
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.ApproveMovieReview
+        ApproveActorProfile:
+          Label: Approve Actor Profile
+          Protocol: HTTPS/WebSockets
+          IsPrivate: false
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.ApproveActorProfile
+        ApproveRestaurantReview:
+          Label: Approve Restaurant Review
+          Protocol: HTTPS/WebSockets
+          IsPrivate: false
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.ApproveRestaurantReview
+        EditorLogOut:
+          Label: Editor Log Out
+          Protocol: HTTPS
+          IsPrivate: false
+        

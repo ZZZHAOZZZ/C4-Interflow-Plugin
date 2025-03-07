@@ -1,0 +1,34 @@
+@startuml
+!include ..\..\..\.c4s\C4_Component.puml
+
+AddElementTag("c4interflow:lifecycle:new", $bgColor=green, $fontColor=#ffffff, $borderColor=green, $shadowing="False")
+AddElementTag("c4interflow:lifecycle:changed", $bgColor=orange, $fontColor=#ffffff, $borderColor=orange, $shadowing="False")
+AddElementTag("c4interflow:lifecycle:removed", $bgColor=red, $fontColor=#ffffff, $borderColor=red, $shadowing="False")
+
+AddRelTag("c4interflow:lifecycle:new", $textColor=green, $lineColor=green)
+AddRelTag("c4interflow:lifecycle:changed", $textColor=orange, $lineColor=orange)
+AddRelTag("c4interflow:lifecycle:removed", $textColor=red, $lineColor=red)
+
+SHOW_PERSON_PORTRAIT()
+LAYOUT_TOP_DOWN()
+
+skinparam linetype polyline
+
+title Content Management System - Database - C4 - Component level
+
+System(ContentManagementSystem.SoftwareSystems.Database, "Database", "Stores user registration information, data, access logs, etc.")
+
+System_Boundary(ContentManagementSystem.SoftwareSystems.Admin, "Admin") {
+    
+Container_Boundary(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Content Sections") {
+    Component(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies, "Movies", "", "")
+    Component(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, "Dining", "", "")
+}
+}
+
+Rel(ContentManagementSystem.SoftwareSystems.Database, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies, "Show Movie Review\nShow Actor Profile", "HTTPS", $tags="protocol:https")
+Rel(ContentManagementSystem.SoftwareSystems.Database, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, "Show Restaurant Review", "HTTPS", $tags="protocol:https")
+
+
+SHOW_LEGEND()
+@enduml

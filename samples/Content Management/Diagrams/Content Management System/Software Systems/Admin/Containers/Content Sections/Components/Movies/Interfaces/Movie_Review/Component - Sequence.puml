@@ -1,0 +1,22 @@
+@startuml
+
+title Content Management System - Admin - Content Sections - Movies - Movie_Review - Sequence - Component level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+
+box "Admin" #White
+    
+box "Content Sections" #White
+    participant "Movies" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies
+end box
+
+end box
+
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies : Movie_Review\n[HTTPS]
+group Movie_Review
+ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies : See Approved Content\n[HTTPS]
+end
+
+
+@enduml

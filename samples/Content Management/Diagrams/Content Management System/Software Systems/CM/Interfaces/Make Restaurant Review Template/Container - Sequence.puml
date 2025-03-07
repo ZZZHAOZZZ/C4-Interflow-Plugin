@@ -1,0 +1,23 @@
+@startuml
+
+title Content Management System - CM - Make Restaurant Review Template - Sequence - Container level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+participant "CM" as ContentManagementSystem.SoftwareSystems.CM
+
+box "Admin" #White
+    participant "Content Sections" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections
+end box
+
+participant "Database" as ContentManagementSystem.SoftwareSystems.Database
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.CM : Make Restaurant Review Template\n[HTML with Tcl and SQL]
+group Make Restaurant Review Template
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections : Make Restaurant Review Template
+group Make Restaurant Review Template
+ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections -> ContentManagementSystem.SoftwareSystems.Database : Data Storage\n[SQL]
+end
+end
+
+
+@enduml

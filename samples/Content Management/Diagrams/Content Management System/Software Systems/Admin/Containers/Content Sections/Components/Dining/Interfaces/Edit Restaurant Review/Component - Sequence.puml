@@ -1,0 +1,23 @@
+@startuml
+
+title Content Management System - Admin - Content Sections - Dining - Edit Restaurant Review - Sequence - Component level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+
+box "Admin" #White
+    
+box "Content Sections" #White
+    participant "Dining" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining
+end box
+
+end box
+
+participant "Database" as ContentManagementSystem.SoftwareSystems.Database
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining : Edit Restaurant Review\n[HTML]
+group Edit Restaurant Review
+ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining -> ContentManagementSystem.SoftwareSystems.Database : Data Storage\n[SQL]
+end
+
+
+@enduml

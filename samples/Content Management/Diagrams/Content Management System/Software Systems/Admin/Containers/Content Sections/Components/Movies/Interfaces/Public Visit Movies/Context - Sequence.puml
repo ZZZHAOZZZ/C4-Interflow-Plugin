@@ -1,0 +1,11 @@
+@startuml
+
+title Content Management System - Admin - Content Sections - Movies - Public Visit Movies - Sequence - Context level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+participant "Admin" as ContentManagementSystem.SoftwareSystems.Admin
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.Admin : Public Visit Movies
+
+
+@enduml

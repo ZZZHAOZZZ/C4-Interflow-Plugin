@@ -1,0 +1,19 @@
+ContentManagementSystem:
+  BusinessProcesses:
+    AuthorActivities:
+      Label: Author Activities
+      Activities:
+      - Label: Author Activities
+        Actor: ContentManagementSystem.Actors.Author
+        Flow:
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.CM.Interfaces.AuthorLogIn
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.CM.Interfaces.AddMovieReview
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.CM.Interfaces.AddActorProfile
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.CM.Interfaces.AddRestaurantReview
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.CM.Interfaces.AuthorLogOut

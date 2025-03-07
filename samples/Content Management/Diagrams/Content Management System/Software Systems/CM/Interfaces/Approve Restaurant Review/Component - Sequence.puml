@@ -1,0 +1,27 @@
+@startuml
+
+title Content Management System - CM - Approve Restaurant Review - Sequence - Component level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+participant "CM" as ContentManagementSystem.SoftwareSystems.CM
+participant "Database" as ContentManagementSystem.SoftwareSystems.Database
+
+box "Admin" #White
+    
+box "Content Sections" #White
+    participant "Dining" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining
+end box
+
+end box
+
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.CM : Approve Restaurant Review\n[HTTPS/WebSockets]
+group Approve Restaurant Review
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Database : Approve Restaurant Review\n[HTTPS/WebSockets, SQL]
+group Approve Restaurant Review
+ContentManagementSystem.SoftwareSystems.Database -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining : Show Restaurant Review\n[HTTPS]
+end
+end
+
+
+@enduml

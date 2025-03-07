@@ -1,0 +1,41 @@
+@startuml
+!include ..\..\..\.c4s\C4_Component.puml
+
+AddElementTag("c4interflow:lifecycle:new", $bgColor=green, $fontColor=#ffffff, $borderColor=green, $shadowing="False")
+AddElementTag("c4interflow:lifecycle:changed", $bgColor=orange, $fontColor=#ffffff, $borderColor=orange, $shadowing="False")
+AddElementTag("c4interflow:lifecycle:removed", $bgColor=red, $fontColor=#ffffff, $borderColor=red, $shadowing="False")
+
+AddRelTag("c4interflow:lifecycle:new", $textColor=green, $lineColor=green)
+AddRelTag("c4interflow:lifecycle:changed", $textColor=orange, $lineColor=orange)
+AddRelTag("c4interflow:lifecycle:removed", $textColor=red, $lineColor=red)
+
+SHOW_PERSON_PORTRAIT()
+LAYOUT_TOP_DOWN()
+
+skinparam linetype polyline
+
+title Content Management System - Programmer Activities - C4 - Component level
+
+Person(ContentManagementSystem.Actors.Programmer, "Programmer", "The programmer builds production templates.")
+System(ContentManagementSystem.SoftwareSystems.CM, "CM", "Content Management System is used to manage the process of creating, organizing, editing, and publishing digital content.")
+System(ContentManagementSystem.SoftwareSystems.Database, "Database", "Stores user registration information, data, access logs, etc.")
+
+System_Boundary(ContentManagementSystem.SoftwareSystems.Admin, "Admin") {
+    
+Container_Boundary(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections, "Content Sections") {
+    Component(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies, "Movies", "", "")
+    Component(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, "Dining", "", "")
+}
+}
+
+Rel(ContentManagementSystem.Actors.Programmer, ContentManagementSystem.SoftwareSystems.CM, "Programmer Log In\nProgrammer Log Out", "HTTPS", $tags="protocol:https")
+Rel(ContentManagementSystem.Actors.Programmer, ContentManagementSystem.SoftwareSystems.CM, "Make Movie Review Template\nMake Actor Profile Template\nMake Restaurant Review Template", "HTML with Tcl and SQL", $tags="protocol:html with tcl and sql")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Database, "Select User Data\nAuthenticate User", "TCP/IP, SQL", $tags="protocol:tcp/ip, sql")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies, "Make Movie_Review Template\nMake Actor_Profile Template", "ADP script", $tags="protocol:adp script")
+Rel(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies, ContentManagementSystem.SoftwareSystems.Database, "Data Storage", "SQL", $tags="protocol:sql")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, "Make Restaurant Review Template", "ADP script", $tags="protocol:adp script")
+Rel(ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining, ContentManagementSystem.SoftwareSystems.Database, "Data Storage", "SQL", $tags="protocol:sql")
+
+
+SHOW_LEGEND()
+@enduml

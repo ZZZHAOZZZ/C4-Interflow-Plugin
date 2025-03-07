@@ -1,0 +1,183 @@
+ContentManagementSystem:
+  SoftwareSystems:
+    Admin:
+      Label: Admin
+      Boundary: Internal
+      Description: Admin is the highest-privilege user in a CMS, responsible for managing users, content, system configurations, and security.
+      Containers:
+        ContentSections:
+          Label: Content Sections
+          ContainerType: Content-Sections
+          Boundary: Internal
+          Description: Content-Sections are primarily used for content classification, helping the CMS organize and manage different types of information, ensuring a clear structure for easy retrieval and display.
+          Technology: 
+          Interfaces:
+            PublisherLogIn:
+              Label: Publisher Log In
+              Protocol: HTTPS
+              IsPrivate: false
+              Flows:
+              - Type: Use
+                Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.SelectUserData
+              - Type: Use
+                Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.AuthenticateUser
+            BuildMovies:
+              Label: Build Movies
+              Protocol: HTTPS
+              IsPrivate: false
+            BuildDining:
+              Label: Build Dining
+              Protocol: HTTPS
+              IsPrivate: false
+            BuildNews:
+              Label: Build News
+              Protocol: HTTPS
+              IsPrivate: false
+            PublisherLogOut:
+              Label: Publisher Log Out
+              Protocol: HTTPS
+              IsPrivate: false
+          Components:
+            Movies:
+              Label: Movies
+              Protocol: 
+              ComponentType: None
+              Description: ''
+              Technology: ''
+              Interfaces: 
+                EnterMovies:
+                  Label: Enter Movies
+                  Protocol: HTTPS
+                  IsPrivate: false
+                MovieReview:
+                  Label: Movie_Review
+                  Protocol: HTTPS
+                  IsPrivate: false
+                  Flows:
+                  - Type: Use
+                    Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies.Interfaces.SeeApprovedContent
+                MoveToDining:
+                  Label: Move To Dining
+                  Protocol: Hyperlink
+                  IsPrivate: false
+                  Flows:
+                  - Type: Use
+                    Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining.Interfaces.EnterDining
+                MoveToNews:
+                  Label: Move To News
+                  Protocol: Hyperlink
+                  IsPrivate: false
+                  Flows:
+                  - Type: Use
+                    Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.News.Interfaces.EnterNews
+                MakeMovieReviewTemplate:
+                  Label: Make Movie_Review Template
+                  Protocol: ADP script
+                  IsPrivate: false
+                  Flows:
+                  - Type: Use
+                    Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.DataStorage
+                MakeActorProfileTemplate:
+                  Label: Make Actor_Profile Template
+                  Protocol: ADP script
+                  IsPrivate: false
+                  Flows:
+                  - Type: Use
+                    Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.DataStorage
+                AddMovieReview:
+                  Label: Add Movie Review
+                  Protocol: HTML
+                  IsPrivate: false
+                  Flows:
+                  - Type: Use
+                    Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.DataStorage
+                AddActorProfile:
+                  Label: Add Actor Profile
+                  Protocol: HTML
+                  IsPrivate: false
+                  Flows:
+                  - Type: Use
+                    Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.DataStorage
+                ShowMovieReview:
+                  Label: Show Movie Review
+                  Protocol: HTTPS
+                  IsPrivate: false
+                ShowActorProfile:
+                  Label: Show Actor Profile
+                  Protocol: HTTPS
+                  IsPrivate: false
+                PublicVisitMovies:
+                  Label: Public Visit Movies
+                  Protocol: HTTPS
+                  IsPrivate: false
+                SeeApprovedContent:
+                  Label: See Approved Content
+                  Protocol: HTTPS
+                  IsPrivate: false  
+            Dining:
+              Label: Dining
+              Protocol: 
+              ComponentType: None
+              Description: ''
+              Technology: ''
+              Interfaces: 
+                EnterDining:
+                  Label: Enter Dining
+                  Protocol: HTTPS
+                  IsPrivate: false
+                MoveToMovies:
+                  Label: Move To Movies
+                  Protocol: Hyperlink
+                  IsPrivate: false
+                  Flows:
+                  - Type: Use
+                    Expression: ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies.Interfaces.EnterMovies
+                MakeRestaurantReviewTemplate:
+                  Label: Make Restaurant Review Template
+                  Protocol: ADP script
+                  IsPrivate: false
+                  Flows:
+                  - Type: Use
+                    Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.DataStorage
+                AddRestaurantReview:
+                  Label: Add Restaurant Review
+                  Protocol: HTML
+                  IsPrivate: false
+                  Flows:
+                  - Type: Use
+                    Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.DataStorage
+                EditRestaurantReview:
+                  Label: Edit Restaurant Review
+                  Protocol: HTML
+                  IsPrivate: false
+                  Flows:
+                  - Type: Use
+                    Expression: ContentManagementSystem.SoftwareSystems.Database.Interfaces.DataStorage
+                ShowRestaurantReview:
+                  Label: Show Restaurant Review
+                  Protocol: HTTPS
+                  IsPrivate: false
+                PublicVisitDining:
+                  Label: Public Visit Dining
+                  Protocol: HTTPS
+                  IsPrivate: false
+                RestaurantReview:
+                  Label: Restaurant Review
+                  Protocol: HTTPS
+                  IsPrivate: false
+            News:
+              Label: News
+              Protocol: 
+              ComponentType: None
+              Description: ''
+              Technology: ''
+              Interfaces:
+                ACSNewsSystem:
+                  Label: ACS news system
+                  Protocol: HTML
+                EnterNews:
+                  Label: Enter News
+                  Protocol: HTTPS
+                  IsPrivate: false
+                
+                

@@ -1,0 +1,11 @@
+@startuml
+
+title Content Management System - CM - Editor Log Out - Sequence - Component level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+participant "CM" as ContentManagementSystem.SoftwareSystems.CM
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.CM : Editor Log Out\n[HTTPS]
+
+
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+
+title Content Management System - Admin - Content Sections - Build Movies - Sequence - Component level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+
+box "Admin" #White
+    participant "Content Sections" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections
+end box
+
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections : Build Movies\n[HTTPS]
+
+
+@enduml

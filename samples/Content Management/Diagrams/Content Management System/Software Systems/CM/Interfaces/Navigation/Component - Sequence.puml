@@ -1,0 +1,36 @@
+@startuml
+
+title Content Management System - CM - Navigation - Sequence - Component level
+
+participant "External" as C4InterFlow.SoftwareSystems.ExternalSystem
+participant "CM" as ContentManagementSystem.SoftwareSystems.CM
+
+box "Admin" #White
+    
+box "Content Sections" #White
+    participant "Dining" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining
+    participant "Movies" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies
+    participant "News" as ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.News
+end box
+
+end box
+
+
+C4InterFlow.SoftwareSystems.ExternalSystem -> ContentManagementSystem.SoftwareSystems.CM : Navigation\n[HTML]
+group Navigation
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining : Move To Movies\n[Hyperlink]
+group Move To Movies
+ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies : Enter Movies\n[HTTPS]
+end
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies : Move To News\n[Hyperlink]
+group Move To News
+ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.News : Enter News\n[HTTPS]
+end
+ContentManagementSystem.SoftwareSystems.CM -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies : Move To Dining\n[Hyperlink]
+group Move To Dining
+ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Movies -> ContentManagementSystem.SoftwareSystems.Admin.Containers.ContentSections.Components.Dining : Enter Dining\n[HTTPS]
+end
+end
+
+
+@enduml

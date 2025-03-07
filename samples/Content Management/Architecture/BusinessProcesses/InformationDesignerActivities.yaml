@@ -1,0 +1,15 @@
+ContentManagementSystem:
+  BusinessProcesses:
+    InformationDesignerActivities:
+      Label: Information Designer Activities
+      Activities:
+      - Label: Information Designer Activities
+        Actor: ContentManagementSystem.Actors.InformationDesigner
+        Flow:
+          Flows:
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.CM.Interfaces.InformationDesignerLogIn
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.CM.Interfaces.Navigation
+          - Type: Use
+            Expression: ContentManagementSystem.SoftwareSystems.CM.Interfaces.InformationDesignerLogOut

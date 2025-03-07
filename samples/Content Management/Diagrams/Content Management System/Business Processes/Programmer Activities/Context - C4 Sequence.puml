@@ -1,0 +1,26 @@
+@startuml
+!include ..\..\..\.c4s\C4_Sequence.puml
+
+title Content Management System - Programmer Activities - C4 Sequence - Context level
+
+Person(ContentManagementSystem.Actors.Programmer, "Programmer", "The programmer builds production templates.")
+System(ContentManagementSystem.SoftwareSystems.CM, "CM", "Content Management System is used to manage the process of creating, organizing, editing, and publishing digital content.")
+System(ContentManagementSystem.SoftwareSystems.Database, "Database", "Stores user registration information, data, access logs, etc.")
+System(ContentManagementSystem.SoftwareSystems.Admin, "Admin", "Admin is the highest-privilege user in a CMS, responsible for managing users, content, system configurations, and security.")
+
+Rel(ContentManagementSystem.Actors.Programmer, ContentManagementSystem.SoftwareSystems.CM, "Programmer Log In", "HTTPS")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Database, "Select User Data", "TCP/IP, SQL")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Database, "Authenticate User", "TCP/IP, SQL")
+Rel(ContentManagementSystem.Actors.Programmer, ContentManagementSystem.SoftwareSystems.CM, "Make Movie Review Template", "HTML with Tcl and SQL")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin, "Make Movie Review Template")
+Rel(ContentManagementSystem.SoftwareSystems.Admin, ContentManagementSystem.SoftwareSystems.Database, "Data Storage", "SQL")
+Rel(ContentManagementSystem.Actors.Programmer, ContentManagementSystem.SoftwareSystems.CM, "Make Actor Profile Template", "HTML with Tcl and SQL")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin, "Make Actor Profile Template")
+Rel(ContentManagementSystem.SoftwareSystems.Admin, ContentManagementSystem.SoftwareSystems.Database, "Data Storage", "SQL")
+Rel(ContentManagementSystem.Actors.Programmer, ContentManagementSystem.SoftwareSystems.CM, "Make Restaurant Review Template", "HTML with Tcl and SQL")
+Rel(ContentManagementSystem.SoftwareSystems.CM, ContentManagementSystem.SoftwareSystems.Admin, "Make Restaurant Review Template")
+Rel(ContentManagementSystem.SoftwareSystems.Admin, ContentManagementSystem.SoftwareSystems.Database, "Data Storage", "SQL")
+Rel(ContentManagementSystem.Actors.Programmer, ContentManagementSystem.SoftwareSystems.CM, "Programmer Log Out", "HTTPS")
+
+
+@enduml
