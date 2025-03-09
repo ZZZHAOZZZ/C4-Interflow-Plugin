@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import { parseDocument, isMap, isScalar } from 'yaml';
 
 let found = false;
+let selectedFolderPath: string | undefined; // 用来记录用户选的文件夹路径
 
 export function createWebviewPanel(context: vscode.ExtensionContext) {
     const panel = vscode.window.createWebviewPanel(
@@ -38,6 +39,7 @@ export function createWebviewPanel(context: vscode.ExtensionContext) {
     
                 if (folderUri && folderUri.length > 0) {
                     const folderPath = folderUri[0].fsPath;
+                    selectedFolderPath = folderPath;  // 把用户选的路径保存在全局变量中
                     // 更新 WebView 的资源根目录
                     panel.webview.options = {
                         enableScripts: true,
@@ -78,7 +80,33 @@ export function createWebviewPanel(context: vscode.ExtensionContext) {
                 }
                 break;
             }
+            case 'runBat':{
+                // 用户点击按钮后，直接执行扩展自带的draw-diagrams.bat
+                if(!selectedFolderPath){
+                    vscode.window.showErrorMessage('Please select a folder first!');
+                    return;
+                }
+                runDrawDiagramsBat(selectedFolderPath);
+                break;
+            }  
         }
+    });
+}
+
+function runDrawDiagramsBat(folderPath: string) {
+    const batFilePath = path.join(folderPath, 'draw-diagrams.bat');
+
+    if (!fs.existsSync(batFilePath)) {
+        vscode.window.showErrorMessage(`未找到脚本文件: ${batFilePath}`);
+        return;
+    } else {
+        vscode.window.showInformationMessage(`找到脚本文件: ${batFilePath}`);
+    }
+
+    vscode.workspace.openTextDocument(batFilePath).then((document) => {
+        vscode.window.showTextDocument(document, vscode.ViewColumn.Beside);
+    }, (error) => {
+        vscode.window.showErrorMessage(`打开 .bat 文件失败: ${error.message}`);
     });
 }
 
@@ -183,6 +211,10 @@ function getWebviewContent(context: vscode.ExtensionContext, panel: vscode.Webvi
             vscode.postMessage({ command: 'selectFolder' });
             console.log("Select Folder button clicked.");
         };
+        
+        function runBat() {
+            vscode.postMessage({ command: 'runBat' });
+        }
 
         function selectFolder() {
             vscode.postMessage({ command: 'selectFolder' });
@@ -342,6 +374,7 @@ function getWebviewContent(context: vscode.ExtensionContext, panel: vscode.Webvi
 <body>
     <h1>C4 Interflow Visualization</h1>
     <button onclick="selectFolder()">Select Folder</button>
+    <button onclick="runBat()">Draw Diagrams</button>
     <div id="navigation">
         <p>No folder selected. Use the button above to load a folder.</p>
     </div>
